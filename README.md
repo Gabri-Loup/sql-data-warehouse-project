@@ -1,3 +1,5 @@
+MINUTAGEM: 2:29:00
+
 # Datawarehouse and Analytics Project
 
 Welcome to **DataWarehouse and Analytics Project** repository 
