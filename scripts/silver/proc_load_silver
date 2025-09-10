@@ -29,3 +29,53 @@ FROM (
 	FROM bronze.crm_cust_info
 	WHERE cst_id IS NOT NULL
 )t WHERE flag_last = 1 
+
+
+
+BAKCUP QUERY:
+SELECT 
+prd_id,
+prd_key,
+REPLACE (SUBSTRING (prd_key, 1, 5), '-', '_') AS cat_id,
+SUBSTRING (prd_key, 7,LEN (prd_key)) AS prd_key ,
+prd_nm,
+IS NULL (prd_cost, 0) as prd_cost),
+prd_line,
+prd_start_dt,
+prd_dt
+FROM bronze.crm_prd_info
+
+
+SELECT 
+    SUBSTRING(prd_key, 7, LEN(prd_key)) AS prd_key
+FROM bronze.crm_prd_info
+WHERE SUBSTRING(prd_key, 7, LEN(prd_key)) NOT IN (
+    SELECT DISTINCT sls_prd_key 
+    FROM bronze.crm_sales_details
+);
+
+select * from bronze.crm_prd_info
+
+
+select * from bronze.crm_prd_info
+where prd_nm != TRIM()
+
+select * from bronze.crm_prd_info
+where prd_cost < 0 OR prd_cost IS NULL
+
+
+
+
+---
+select prd_key,
+COUNT(*)
+from bronze.crm_prd_info
+GROUP BY prd_key
+HAVING COUNT (*) > 1 or prd_key IS NULL;
+
+select prd_id,
+COUNT(*)
+ FROM bronze.crm_prd_info
+ GROUP BY prd_id
+ HAVING COUNT (*) > 1 or prd_id IS NULL
+
